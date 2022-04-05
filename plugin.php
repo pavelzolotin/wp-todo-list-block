@@ -10,7 +10,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       todo-list
  *
- * @package           block-course
+ * @package           blocks-course
  */
 
 /**
@@ -20,7 +20,7 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function block_course_todo_list_block_init() {
+function blocks_course_todo_list_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
-add_action( 'init', 'block_course_todo_list_block_init' );
+add_action( 'init', 'blocks_course_todo_list_block_init' );

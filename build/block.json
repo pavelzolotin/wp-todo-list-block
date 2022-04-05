@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "block-course/todo-list",
+	"name": "blocks-course/todo-list",
 	"version": "0.1.0",
 	"title": "To Do List",
 	"category": "widgets",

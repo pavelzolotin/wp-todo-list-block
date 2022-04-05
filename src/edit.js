@@ -1,38 +1,56 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
+import { useState } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import { CheckboxControl, TextControl, Button } from '@wordpress/components';
+import { useSelect, useDispatch } from '@wordpress/data';
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @return {WPElement} Element to render.
- */
 export default function Edit() {
+	const [newTodo, setNewTodo] = useState('');
+	const [addingTodo, setAddingTodo] = useState(false);
+	const todos = useSelect((select) => {
+		const todosStore = select('blocks-course/todos');
+		return todosStore && todosStore.getTodos();
+	}, []);
+	const actions = useDispatch('blocks-course/todos');
+	const addTodo = actions && actions.addTodo;
 	return (
-		<p {...useBlockProps()}>
-			{__('To Do List – hello from the editor!', 'to-do-list')}
-		</p>
+		<div {...useBlockProps()}>
+			{!todos && (
+				<p>{__('Please make sure your plugin is activated', 'todo-list')}</p>
+			)}
+			{todos && (
+				<>
+					<ul>
+						{todos.map((todo) => (
+							<li key={todo.id} className={todo.completed && 'todo-completed'}>
+								<CheckboxControl
+									label={todo.title}
+									checked={todo.completed}
+									onChange={(v) => console.log(v)}
+								/>
+							</li>
+						))}
+					</ul>
+					<form
+						onSubmit={async (e) => {
+							e.preventDefault();
+							if (addTodo && newTodo) {
+								setAddingTodo(true);
+								await addTodo(newTodo);
+								setNewTodo('');
+								setAddingTodo(false);
+							}
+						}}
+						className="addtodo-form"
+					>
+						<TextControl value={newTodo} onChange={(v) => setNewTodo(v)} />
+						<Button disabled={addingTodo} type="submit" isPrimary>
+							{__('Add Todo', 'todo-list')}
+						</Button>
+					</form>
+				</>
+			)}
+		</div>
 	);
 }
