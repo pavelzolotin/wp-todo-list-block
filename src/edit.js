@@ -18,7 +18,12 @@ export default function Edit() {
 	return (
 		<div {...useBlockProps()}>
 			{!todos && (
-				<p>{__('Please make sure your plugin is activated', 'todo-list')}</p>
+				<p>
+					{__(
+						'Please make sure your plugin is activated',
+						'blocks-course-todo-list'
+					)}
+				</p>
 			)}
 			{todos && (
 				<>

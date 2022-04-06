@@ -8,7 +8,7 @@
  * Author:            Someone
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       todo-list
+ * Text Domain:       blocks-course-todo-list
  *
  * @package           blocks-course
  */
@@ -24,3 +24,9 @@ function blocks_course_todo_list_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'blocks_course_todo_list_block_init' );
+
+function blocks_course_todo_list_set_translations() {
+    wp_set_script_translations('blocks-course-todo-list-editor-script', 'blocks-course-todo-list', plugin_dir_path(__FILE__) . 'languages');
+}
+
+add_action('init', 'blocks_course_todo_list_set_translations');

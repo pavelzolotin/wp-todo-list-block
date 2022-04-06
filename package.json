@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@wordpress/components": "^19.7.0",
 		"@wordpress/data": "^6.5.0",
-		"@wordpress/element": "^4.3.0"
+		"@wordpress/element": "^4.3.0",
+		"wp-cli": "^0.0.5"
 	}
 }
