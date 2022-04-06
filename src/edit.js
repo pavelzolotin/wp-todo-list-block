@@ -14,6 +14,7 @@ export default function Edit() {
 	}, []);
 	const actions = useDispatch('blocks-course/todos');
 	const addTodo = actions && actions.addTodo;
+	const toggleTodo = actions && actions.toggleTodo;
 	return (
 		<div {...useBlockProps()}>
 			{!todos && (
@@ -22,12 +23,17 @@ export default function Edit() {
 			{todos && (
 				<>
 					<ul>
-						{todos.map((todo) => (
+						{todos.map((todo, index) => (
 							<li key={todo.id} className={todo.completed && 'todo-completed'}>
 								<CheckboxControl
+									disabled={todo.loading}
 									label={todo.title}
 									checked={todo.completed}
-									onChange={(v) => console.log(v)}
+									onChange={() => {
+										if (toggleTodo) {
+											toggleTodo(todo, index);
+										}
+									}}
 								/>
 							</li>
 						))}
@@ -46,7 +52,7 @@ export default function Edit() {
 					>
 						<TextControl value={newTodo} onChange={(v) => setNewTodo(v)} />
 						<Button disabled={addingTodo} type="submit" isPrimary>
-							{__('Add Todo', 'todo-list')}
+							{__('Add Todo', 'blocks-course-todo-list')}
 						</Button>
 					</form>
 				</>
