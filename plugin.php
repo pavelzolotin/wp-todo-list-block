@@ -21,12 +21,21 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function blocks_course_todo_list_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	register_block_type( __DIR__ );
 }
 add_action( 'init', 'blocks_course_todo_list_block_init' );
 
 function blocks_course_todo_list_set_translations() {
-    wp_set_script_translations('blocks-course-todo-list-editor-script', 'blocks-course-todo-list', plugin_dir_path(__FILE__) . 'languages');
+    wp_set_script_translations( 'blocks-course-todo-list-editor-script', 'blocks-course-todo-list', plugin_dir_path( __FILE__ ) . 'languages' );
 }
 
 add_action('init', 'blocks_course_todo_list_set_translations');
+
+function blocks_course_load_translations( $mofile, $domain ) {
+    if ( 'blocks-course-todo-list' === $domain && false !== strpos( $mofile, WP_LANG_DIR . '/plugins/' ) ) {
+        $locale = apply_filters( 'plugin_locale', determine_locale(), $domain );
+        $mofile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $domain . '-' . $locale . '.mo';
+    }
+    return $mofile;
+}
+add_filter( 'load_textdomain_mofile', 'blocks_course_load_translations', 10, 2 );

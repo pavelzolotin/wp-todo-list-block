@@ -1,0 +1,49 @@
+# Copyright (C) 2022 Someone
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: To Do List 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-todo-list\n"
+"POT-Creation-Date: 2022-04-07T11:25:50+02:00\n"
+"PO-Revision-Date: 2022-04-07 14:39+0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Domain: blocks-course-todo-list\n"
+
+#. Plugin Name of the plugin
+#: build/index.js:99 src/index.js:8 build/index.js:76
+msgid "To Do List"
+msgstr "Aufgabenliste"
+
+#. Description of the plugin
+#: build/index.js:100 src/index.js:9 build/index.js:77
+msgid "Display and edit todos in the data store."
+msgstr "Anzeigen und Bearbeiten von Aufgaben im Datenspeicher."
+
+#. Author of the plugin
+msgid "Someone"
+msgstr "Jemand"
+
+#: build/index.js:43 src/edit.js:22 build/index.js:22
+msgid "Please make sure your plugin is activated"
+msgstr "Bitte stellen Sie sicher, dass Ihr Plugin aktiviert ist"
+
+#: build/index.js:74 src/edit.js:60 build/index.js:60
+msgid "Add Todo"
+msgstr "ToDo hinzufügen"
+
+#: build/block.json src/block.json
+msgctxt "block title"
+msgid "To Do List"
+msgstr "Aufgabenliste"
+
+#: build/block.json src/block.json
+msgctxt "block description"
+msgid "Display and edit todos in the data store."
+msgstr "Anzeigen und Bearbeiten von Aufgaben im Datenspeicher."
